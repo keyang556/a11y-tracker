@@ -85,6 +85,8 @@ def run():
 
         # 通報表單：空白送出
         page.goto(f"{BASE}/report.html"); page.wait_for_load_state("networkidle")
+        # 等 Turnstile 測試金鑰自動通過，錯誤摘要才會固定是 7 個欄位
+        page.wait_for_function("document.querySelector('#f-turnstile [name=cf-turnstile-response]')?.value")
         page.click("#report-form button[type=submit]")
         check(page.evaluate("document.activeElement.id") == "error-summary", "空白送出時焦點移到錯誤摘要")
         n_err = page.locator("#error-summary li").count()

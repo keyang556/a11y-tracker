@@ -62,6 +62,7 @@
 ## 建議的人工測試
 
 - NVDA 搭配 Firefox 與 Chrome：完成一次通報與完整處理流程
+- 通報表單的 Cloudflare Turnstile 人機驗證：axe-core 不檢測跨網域 iframe 的內容，請以螢幕閱讀器確認能聽到驗證狀態並完成送出
 - iPhone 的 VoiceOver 與 Android 的 TalkBack：瀏覽案件、操作篩選
 - 瀏覽器放大至 200% 與 400%
 - Windows 對比佈景主題（高對比模式）

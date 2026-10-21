@@ -6,6 +6,7 @@
   <title>我要通報｜無障礙改善追蹤平台（模擬）</title>
   <meta name="description" content="通報政府數位服務、公營事業或民間服務的無障礙問題（模擬）。">
   <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script>
   <script src="assets/js/app.js" defer></script>
 </head>
 <body data-page="report">
@@ -172,7 +173,11 @@
             </div>
           </div>
         </fieldset>
-        <p class="hint">本平台不使用圖形驗證碼。正式系統可改用寄送確認信等不需辨識圖片的方式防止濫用。</p>
+        <fieldset id="f-captcha-group" aria-describedby="f-captcha-hint">
+          <legend>人機驗證 <span aria-hidden="true">*</span><span class="visually-hidden">（必填）</span></legend>
+          <span class="hint" id="f-captcha-hint">使用 <span lang="en">Cloudflare Turnstile</span> 防止濫用，通常會自動完成，不需要辨識圖片或輸入文字。模擬系統使用官方測試金鑰，一定會通過。</span>
+          <div id="f-turnstile" class="turnstile" tabindex="-1" data-sitekey="1x00000000000000000000AA"></div>
+        </fieldset>
         <button type="submit">送出通報</button>
       </form>
       <section id="report-done" class="card" tabindex="-1" aria-labelledby="done-title" hidden>

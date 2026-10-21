@@ -1164,6 +1164,24 @@ updateService();
 const field = (id) => document.getElementById(id);
 const isEmail = (s) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
 
+// 人機驗證：Cloudflare Turnstile。api.js 以 render=explicit 在 app.js 之前載入；載入或顯示失敗時 captchaId 為 null
+const captchaGroup = field("f-captcha-group");
+const captchaBox = field("f-turnstile");
+let captchaId = null;
+try {
+  if (window.turnstile) captchaId = window.turnstile.render(captchaBox, {
+    sitekey: captchaBox.dataset.sitekey,
+    language: "zh-tw",
+    size: "flexible",
+    callback: () => clearError(captchaGroup),
+    "error-callback": () => { setError(captchaGroup, "人機驗證發生錯誤，請重新整理頁面再試一次"); return true; },
+  }) ?? null;
+} catch { /* 送出時提示無法載入 */ }
+function captchaToken() {
+  if (captchaId == null) return "";
+  try { return window.turnstile.getResponse(captchaId) || ""; } catch { return ""; }
+}
+
 // 修正後即時移除該欄位的錯誤（不打斷輸入，也不額外播報）
 form.addEventListener("input", (e) => {
   const t = e.target;
@@ -1195,6 +1213,11 @@ form.addEventListener("submit", (e) => {
   const email = field("f-email");
   if (!email.value.trim()) { setError(email, "請填寫電子郵件"); errors.push({ focus: email, label: "電子郵件", message: "請填寫電子郵件" }); }
   else if (!isEmail(email.value.trim())) { setError(email, "電子郵件格式不正確，例如 name@example.com"); errors.push({ focus: email, label: "電子郵件", message: "格式不正確，例如 name@example.com" }); }
+  if (!captchaToken()) {
+    const message = captchaId == null ? "人機驗證無法載入，請確認網路連線後重新整理頁面" : "請完成人機驗證";
+    setError(captchaGroup, message);
+    errors.push({ focus: captchaBox, label: "人機驗證", message });
+  }
 
   if (errors.length) { showSummary(summary, errors); return; }
   hideSummary(summary);
