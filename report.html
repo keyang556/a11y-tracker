@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>我要通報｜無障礙改善追蹤平台（模擬）</title>
+  <meta name="description" content="通報政府數位服務、公營事業或民間服務的無障礙問題（模擬）。">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/app.js" defer></script>
+</head>
+<body data-page="report">
+  <a class="skip-link" href="#main">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand-link" href="index.html">
+      <svg class="brand-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect class="bg" x="0" y="0" width="48" height="48" rx="12"/><path class="fg" d="M14 11h14l7 7v19a2 2 0 0 1-2 2H14a2 2 0 0 1-2-2V13a2 2 0 0 1 2-2zm2 4v20h16V20h-6v-5zm3 11.5 2.2-2.2 3 3 6-6 2.2 2.2-8.2 8.2z"/></svg>
+      <span class="brand-text"><span class="brand-sub">政府數位服務</span><span class="brand-main">無障礙改善追蹤平台</span></span>
+    </a>
+    <span class="sim-badge">模擬系統</span>
+    <form class="header-search" role="search" aria-label="全站搜尋" action="cases.html" method="get">
+      <label class="visually-hidden" for="site-q">搜尋案件、機關或關鍵字</label>
+      <input id="site-q" name="q" type="search" placeholder="搜尋案件、機關或關鍵字">
+      <button type="submit">搜尋</button>
+    </form>
+    <p class="role-indicator">模擬身分：<a id="role-name" href="workbench.html">民眾</a></p>
+  </header>
+  <div class="layout">
+    <nav class="site-nav" aria-label="主要導覽">
+      <ul>
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="report.html" aria-current="page">我要通報</a></li>
+        <li><a href="cases.html">案件查詢</a></li>
+        <li><a href="dashboard.html">統計儀表板</a></li>
+        <li><a href="agencies.html">機關與服務</a></li>
+        <li><a href="workbench.html">處理工作台</a></li>
+        <li><a href="about.html">關於與無障礙聲明</a></li>
+      </ul>
+    </nav>
+    <main id="main" tabindex="-1">
+      <noscript><p>本模擬系統需要啟用 JavaScript 才能顯示案件資料。</p></noscript>
+
+      <div class="page-head">
+        <h1>我要通報無障礙問題</h1>
+        <p>請描述你在使用網站、App 或電子文件時遇到的障礙。審查員會在 3 個工作日內評估等級，並通知負責單位限期改善。</p>
+      </div>
+      <div class="notice notice-warn"><p>這是模擬系統：送出的內容只存在你的瀏覽器，不會傳送到任何伺服器，請勿填寫真實個資。</p></div>
+      <div id="error-summary" class="notice notice-error error-summary" tabindex="-1" role="alert" hidden></div>
+      <form id="report-form" novalidate>
+        <p>標示 <span aria-hidden="true">*</span>（必填）的欄位必須填寫。</p>
+        <fieldset>
+          <legend>問題發生在哪裡</legend>
+          <div class="field">
+            <label for="f-service">服務名稱 <span aria-hidden="true">*</span><span class="visually-hidden">（必填）</span></label>
+            <span class="hint" id="f-service-hint">選擇服務後會自動帶出負責單位。找不到時請選「其他」。</span>
+            <select id="f-service" name="service" required aria-required="true" aria-describedby="f-service-hint"></select>
+          </div>
+          <div class="field" id="other-fields" hidden>
+            <label for="f-service-other">其他服務名稱 <span aria-hidden="true">*</span><span class="visually-hidden">（必填）</span></label>
+            <input id="f-service-other" name="serviceOther" type="text">
+            <label for="f-agency-other">負責單位名稱</label>
+            <input id="f-agency-other" name="agencyOther" type="text">
+          <fieldset>
+              <legend>使用的版本</legend>
+              <div class="choice"><input type="radio" id="f-ed-std" name="edition" value="標準版" checked><label for="f-ed-std">標準版</label></div>
+              <div class="choice"><input type="radio" id="f-ed-fr" name="edition" value="友善版本"><label for="f-ed-fr">友善版本（例如視障介面、文字模式）</label></div>
+              <div class="choice"><input type="radio" id="f-ed-un" name="edition" value="不確定"><label for="f-ed-un">不確定</label></div>
+            </fieldset>
+          </div>
+          <p>負責單位：<output id="f-agency" for="f-service">尚未選擇服務</output></p>
+          <div class="field">
+            <label for="f-location">問題網址或畫面位置 <span aria-hidden="true">*</span><span class="visually-hidden">（必填）</span></label>
+            <span class="hint" id="f-location-hint">網站請貼上完整網址；App 請描述畫面，例如「首頁 &gt; 旅程規劃」。</span>
+            <input id="f-location" name="location" type="text" required aria-required="true" aria-describedby="f-location-hint">
+          </div>
+
+          <fieldset>
+            <legend>問題發生在哪個步驟</legend>
+            <div class="choice-grid">
+              <div class="choice"><input type="radio" id="f-task-1" name="task" value="資訊查找" checked><label for="f-task-1">資訊查找</label></div>
+              <div class="choice"><input type="radio" id="f-task-2" name="task" value="文件閱讀"><label for="f-task-2">文件閱讀</label></div>
+              <div class="choice"><input type="radio" id="f-task-3" name="task" value="介面操作"><label for="f-task-3">介面操作</label></div>
+              <div class="choice"><input type="radio" id="f-task-4" name="task" value="結果確認"><label for="f-task-4">結果確認</label></div>
+            </div>
+          </fieldset>
+        </fieldset>
+        <fieldset>
+          <legend>問題內容</legend>
+          <fieldset id="f-impact-group" aria-describedby="f-impact-hint">
+            <legend>對你的影響 <span aria-hidden="true">*</span><span class="visually-hidden">（必填）</span></legend>
+            <span class="hint" id="f-impact-hint">最後等級由審查員評定。</span>
+            <div class="choice"><input type="radio" id="f-imp-block" name="impact" value="block" required><label for="f-imp-block">完全無法自己完成</label></div>
+            <div class="choice"><input type="radio" id="f-imp-serious" name="impact" value="serious"><label for="f-imp-serious">需要別人協助，或只能改走其他管道</label></div>
+            <div class="choice"><input type="radio" id="f-imp-normal" name="impact" value="normal"><label for="f-imp-normal">可以完成，但很費時或容易出錯</label></div>
+          </fieldset>
+          <fieldset>
+            <legend>問題類型</legend>
+            <div class="choice-grid" id="f-types"></div>
+          </fieldset>
+          <div class="field">
+            <label for="f-title">問題摘要 <span aria-hidden="true">*</span><span class="visually-hidden">（必填）</span></label>
+            <span class="hint" id="f-title-hint">一句話說明問題，例如「付款按鈕沒有名稱」。</span>
+            <input id="f-title" name="title" type="text" required aria-required="true" aria-describedby="f-title-hint" maxlength="80">
+          </div>
+          <div class="field">
+            <label for="f-desc">詳細說明 <span aria-hidden="true">*</span><span class="visually-hidden">（必填）</span></label>
+            <span class="hint" id="f-desc-hint">發生了什麼事、你原本想完成什麼。</span>
+            <textarea id="f-desc" name="description" required aria-required="true" aria-describedby="f-desc-hint"></textarea>
+          </div>
+          <div class="field">
+            <label for="f-steps">重現步驟</label>
+            <span class="hint" id="f-steps-hint">一行寫一個步驟，方便機關與廠商重現問題。</span>
+            <textarea id="f-steps" name="steps" aria-describedby="f-steps-hint"></textarea>
+          </div>
+          <div class="field">
+            <label for="f-expected">你希望的結果</label>
+            <input id="f-expected" name="expected" type="text">
+          </div>
+          <div class="field">
+            <label for="f-srlog">報讀紀錄</label>
+            <span class="hint" id="f-srlog-hint">選填。可以貼上 NVDA 語音檢視器等工具記下的報讀內容。</span>
+            <textarea id="f-srlog" name="srLog" aria-describedby="f-srlog-hint"></textarea>
+          </div>
+          <div class="field">
+            <label for="f-file">附件</label>
+            <span class="hint" id="f-file-hint">選填。截圖或錄影，模擬系統只記錄檔名，不會上傳檔案。</span>
+            <input id="f-file" name="files" type="file" multiple aria-describedby="f-file-hint">
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>使用環境</legend>
+          <div class="field">
+            <label for="f-platform">裝置與系統</label>
+            <span class="hint" id="f-platform-hint">例如 Windows 11／Chrome、iPhone／iOS 26。</span>
+            <input id="f-platform" name="platform" type="text" aria-describedby="f-platform-hint">
+          </div>
+          <fieldset>
+            <legend>使用的輔助科技</legend>
+            <div class="choice-grid" id="f-at"></div>
+          </fieldset>
+        </fieldset>
+        <fieldset>
+          <legend>聯絡方式（不會公開）</legend>
+          <div class="form-grid">
+            <div class="field">
+              <label for="f-name">姓名 <span aria-hidden="true">*</span><span class="visually-hidden">（必填）</span></label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required aria-required="true">
+            </div>
+            <div class="field">
+              <label for="f-email">電子郵件 <span aria-hidden="true">*</span><span class="visually-hidden">（必填）</span></label>
+              <span class="hint" id="f-email-hint">例如 name@example.com</span>
+              <input id="f-email" name="email" type="email" autocomplete="email" required aria-required="true" aria-describedby="f-email-hint">
+            </div>
+            <div class="field">
+              <label for="f-tel">電話</label>
+              <input id="f-tel" name="tel" type="tel" autocomplete="tel">
+            </div>
+          </div>
+          <fieldset>
+            <legend>希望的聯繫方式</legend>
+            <div class="choice"><input type="radio" id="f-c-email" name="contact" value="電子郵件" checked><label for="f-c-email">電子郵件</label></div>
+            <div class="choice"><input type="radio" id="f-c-tel" name="contact" value="電話"><label for="f-c-tel">電話</label></div>
+            <div class="choice"><input type="radio" id="f-c-sms" name="contact" value="簡訊"><label for="f-c-sms">簡訊</label></div>
+          </fieldset>
+          <div class="choice">
+            <input type="checkbox" id="f-alt" name="needAlt">
+            <label for="f-alt">這個問題讓我無法完成急需的事，請機關先提供替代管道</label>
+          </div>
+          <div class="choice">
+            <input type="checkbox" id="f-consent" name="consent" aria-describedby="f-consent-hint">
+            <div>
+              <label for="f-consent">同意公開去識別化的案件內容與處理過程</label>
+              <span class="hint" id="f-consent-hint">你的姓名與聯絡方式一律不公開。</span>
+            </div>
+          </div>
+        </fieldset>
+        <p class="hint">本平台不使用圖形驗證碼。正式系統可改用寄送確認信等不需辨識圖片的方式防止濫用。</p>
+        <button type="submit">送出通報</button>
+      </form>
+      <section id="report-done" class="card" tabindex="-1" aria-labelledby="done-title" hidden>
+        <h2 id="done-title">通報已送出</h2>
+        <div id="done-body"></div>
+      </section>
+    </main>
+  </div>
+  <footer class="site-footer">
+    <p>本站為「看不見的資訊障礙：政府數位服務的可近用性評估與改善工具」提案的展示用模擬系統。所有案件、機關回應與統計皆為模擬資料，部分情境參考公開報導；資料只存在你的瀏覽器。</p>
+    <div class="footer-actions">
+      <a href="about.html#statement">無障礙聲明</a>
+      <button type="button" class="btn-secondary" id="reset-btn">重設模擬資料</button>
+    </div>
+    <dialog id="reset-dialog" aria-labelledby="reset-title" aria-describedby="reset-desc">
+      <h2 id="reset-title">重設模擬資料？</h2>
+      <p id="reset-desc">你新增的通報與所有處理紀錄都會清除，回到初始的模擬資料。此動作無法復原。</p>
+      <div class="btn-row">
+        <button type="button" class="btn-secondary" data-cancel>取消</button>
+        <button type="button" class="btn-danger" data-confirm>重設資料</button>
+      </div>
+    </dialog>
+  </footer>
+  <div id="live" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>

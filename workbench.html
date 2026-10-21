@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>處理工作台｜無障礙改善追蹤平台（模擬）</title>
+  <meta name="description" content="切換模擬身分，處理評估分級、機關改善與使用者複驗。">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/app.js" defer></script>
+</head>
+<body data-page="workbench">
+  <a class="skip-link" href="#main">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand-link" href="index.html">
+      <svg class="brand-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect class="bg" x="0" y="0" width="48" height="48" rx="12"/><path class="fg" d="M14 11h14l7 7v19a2 2 0 0 1-2 2H14a2 2 0 0 1-2-2V13a2 2 0 0 1 2-2zm2 4v20h16V20h-6v-5zm3 11.5 2.2-2.2 3 3 6-6 2.2 2.2-8.2 8.2z"/></svg>
+      <span class="brand-text"><span class="brand-sub">政府數位服務</span><span class="brand-main">無障礙改善追蹤平台</span></span>
+    </a>
+    <span class="sim-badge">模擬系統</span>
+    <form class="header-search" role="search" aria-label="全站搜尋" action="cases.html" method="get">
+      <label class="visually-hidden" for="site-q">搜尋案件、機關或關鍵字</label>
+      <input id="site-q" name="q" type="search" placeholder="搜尋案件、機關或關鍵字">
+      <button type="submit">搜尋</button>
+    </form>
+    <p class="role-indicator">模擬身分：<a id="role-name" href="workbench.html">民眾</a></p>
+  </header>
+  <div class="layout">
+    <nav class="site-nav" aria-label="主要導覽">
+      <ul>
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="report.html">我要通報</a></li>
+        <li><a href="cases.html">案件查詢</a></li>
+        <li><a href="dashboard.html">統計儀表板</a></li>
+        <li><a href="agencies.html">機關與服務</a></li>
+        <li><a href="workbench.html" aria-current="page">處理工作台</a></li>
+        <li><a href="about.html">關於與無障礙聲明</a></li>
+      </ul>
+    </nav>
+    <main id="main" tabindex="-1">
+      <noscript><p>本模擬系統需要啟用 JavaScript 才能顯示案件資料。</p></noscript>
+
+      <div class="page-head">
+        <h1>處理工作台</h1>
+        <p>選擇一個模擬身分，就能看到該身分待處理的案件。點進案件後，在「處理動作」區完成評估、改善回報或複驗。</p>
+      </div>
+      <form id="role-form" class="card">
+        <h2 id="role-title">切換模擬身分</h2>
+        <fieldset>
+          <legend>目前身分</legend>
+          <div class="choice"><input type="radio" id="r-public" name="role" value="public"><label for="r-public">民眾：瀏覽與通報</label></div>
+          <div class="choice"><input type="radio" id="r-reviewer" name="role" value="reviewer"><label for="r-reviewer">數位發展部審查員：評估分級、督導逾期案件</label></div>
+          <div class="choice"><input type="radio" id="r-agency" name="role" value="agency"><label for="r-agency">機關承辦人：提供替代管道、回報改善</label></div>
+          <div class="choice"><input type="radio" id="r-tester" name="role" value="tester"><label for="r-tester">複驗員：以輔助科技實測並登錄結果</label></div>
+        </fieldset>
+        <div class="field" id="agency-field">
+          <label for="r-agency-select">機關承辦人所屬單位</label>
+          <select id="r-agency-select" name="agency"></select>
+        </div>
+        <button type="submit">切換身分</button>
+        <p id="role-status" class="muted"></p>
+      </form>
+      <div id="tasks"></div>
+    </main>
+  </div>
+  <footer class="site-footer">
+    <p>本站為「看不見的資訊障礙：政府數位服務的可近用性評估與改善工具」提案的展示用模擬系統。所有案件、機關回應與統計皆為模擬資料，部分情境參考公開報導；資料只存在你的瀏覽器。</p>
+    <div class="footer-actions">
+      <a href="about.html#statement">無障礙聲明</a>
+      <button type="button" class="btn-secondary" id="reset-btn">重設模擬資料</button>
+    </div>
+    <dialog id="reset-dialog" aria-labelledby="reset-title" aria-describedby="reset-desc">
+      <h2 id="reset-title">重設模擬資料？</h2>
+      <p id="reset-desc">你新增的通報與所有處理紀錄都會清除，回到初始的模擬資料。此動作無法復原。</p>
+      <div class="btn-row">
+        <button type="button" class="btn-secondary" data-cancel>取消</button>
+        <button type="button" class="btn-danger" data-confirm>重設資料</button>
+      </div>
+    </dialog>
+  </footer>
+  <div id="live" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>

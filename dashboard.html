@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>統計儀表板｜無障礙改善追蹤平台（模擬）</title>
+  <meta name="description" content="各機關無障礙問題案件數量、逾期、改善天數與複驗通過率（模擬）。">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/app.js" defer></script>
+</head>
+<body data-page="dashboard">
+  <a class="skip-link" href="#main">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand-link" href="index.html">
+      <svg class="brand-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect class="bg" x="0" y="0" width="48" height="48" rx="12"/><path class="fg" d="M14 11h14l7 7v19a2 2 0 0 1-2 2H14a2 2 0 0 1-2-2V13a2 2 0 0 1 2-2zm2 4v20h16V20h-6v-5zm3 11.5 2.2-2.2 3 3 6-6 2.2 2.2-8.2 8.2z"/></svg>
+      <span class="brand-text"><span class="brand-sub">政府數位服務</span><span class="brand-main">無障礙改善追蹤平台</span></span>
+    </a>
+    <span class="sim-badge">模擬系統</span>
+    <form class="header-search" role="search" aria-label="全站搜尋" action="cases.html" method="get">
+      <label class="visually-hidden" for="site-q">搜尋案件、機關或關鍵字</label>
+      <input id="site-q" name="q" type="search" placeholder="搜尋案件、機關或關鍵字">
+      <button type="submit">搜尋</button>
+    </form>
+    <p class="role-indicator">模擬身分：<a id="role-name" href="workbench.html">民眾</a></p>
+  </header>
+  <div class="layout">
+    <nav class="site-nav" aria-label="主要導覽">
+      <ul>
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="report.html">我要通報</a></li>
+        <li><a href="cases.html">案件查詢</a></li>
+        <li><a href="dashboard.html" aria-current="page">統計儀表板</a></li>
+        <li><a href="agencies.html">機關與服務</a></li>
+        <li><a href="workbench.html">處理工作台</a></li>
+        <li><a href="about.html">關於與無障礙聲明</a></li>
+      </ul>
+    </nav>
+    <main id="main" tabindex="-1">
+      <noscript><p>本模擬系統需要啟用 JavaScript 才能顯示案件資料。</p></noscript>
+
+      <div class="page-head">
+        <h1>統計儀表板</h1>
+        <p>主管機關用來掌握整體狀況與安排抽測優先順序；同一份資料以去識別化方式向民眾公開。每張圖表都附有資料表。</p>
+        <div class="btn-row"><button type="button" id="export-all">下載報表（CSV）</button></div>
+      </div>
+      <section>
+        <h2 id="h-kpi">重點指標</h2>
+        <ul class="kpi-grid" id="kpis"></ul>
+      </section>
+      <section>
+        <h2 id="h-charts">統計圖表</h2>
+        <div class="grid-2" id="charts"></div>
+      </section>
+      <section class="card">
+        <h2 id="h-agency">各單位改善情形</h2>
+        <div id="agency-table"></div>
+      </section>
+      <div class="grid-2">
+        <section class="card">
+          <h2 id="h-done">近期改善成果</h2>
+          <ul class="list-plain task-list" id="done-list"></ul>
+        </section>
+        <section class="card">
+          <h2 id="h-todo">主管機關代辦事項</h2>
+          <ul class="list-plain task-list" id="todo-list"></ul>
+        </section>
+      </div>
+    </main>
+  </div>
+  <footer class="site-footer">
+    <p>本站為「看不見的資訊障礙：政府數位服務的可近用性評估與改善工具」提案的展示用模擬系統。所有案件、機關回應與統計皆為模擬資料，部分情境參考公開報導；資料只存在你的瀏覽器。</p>
+    <div class="footer-actions">
+      <a href="about.html#statement">無障礙聲明</a>
+      <button type="button" class="btn-secondary" id="reset-btn">重設模擬資料</button>
+    </div>
+    <dialog id="reset-dialog" aria-labelledby="reset-title" aria-describedby="reset-desc">
+      <h2 id="reset-title">重設模擬資料？</h2>
+      <p id="reset-desc">你新增的通報與所有處理紀錄都會清除，回到初始的模擬資料。此動作無法復原。</p>
+      <div class="btn-row">
+        <button type="button" class="btn-secondary" data-cancel>取消</button>
+        <button type="button" class="btn-danger" data-confirm>重設資料</button>
+      </div>
+    </dialog>
+  </footer>
+  <div id="live" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>

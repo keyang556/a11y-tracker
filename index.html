@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>首頁｜無障礙改善追蹤平台（模擬）</title>
+  <meta name="description" content="政府數位服務無障礙問題的通報、列管、複驗與公開追蹤（模擬系統）。">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/app.js" defer></script>
+</head>
+<body data-page="index">
+  <a class="skip-link" href="#main">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand-link" href="index.html">
+      <svg class="brand-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect class="bg" x="0" y="0" width="48" height="48" rx="12"/><path class="fg" d="M14 11h14l7 7v19a2 2 0 0 1-2 2H14a2 2 0 0 1-2-2V13a2 2 0 0 1 2-2zm2 4v20h16V20h-6v-5zm3 11.5 2.2-2.2 3 3 6-6 2.2 2.2-8.2 8.2z"/></svg>
+      <span class="brand-text"><span class="brand-sub">政府數位服務</span><span class="brand-main">無障礙改善追蹤平台</span></span>
+    </a>
+    <span class="sim-badge">模擬系統</span>
+    <form class="header-search" role="search" aria-label="全站搜尋" action="cases.html" method="get">
+      <label class="visually-hidden" for="site-q">搜尋案件、機關或關鍵字</label>
+      <input id="site-q" name="q" type="search" placeholder="搜尋案件、機關或關鍵字">
+      <button type="submit">搜尋</button>
+    </form>
+    <p class="role-indicator">模擬身分：<a id="role-name" href="workbench.html">民眾</a></p>
+  </header>
+  <div class="layout">
+    <nav class="site-nav" aria-label="主要導覽">
+      <ul>
+        <li><a href="index.html" aria-current="page">首頁</a></li>
+        <li><a href="report.html">我要通報</a></li>
+        <li><a href="cases.html">案件查詢</a></li>
+        <li><a href="dashboard.html">統計儀表板</a></li>
+        <li><a href="agencies.html">機關與服務</a></li>
+        <li><a href="workbench.html">處理工作台</a></li>
+        <li><a href="about.html">關於與無障礙聲明</a></li>
+      </ul>
+    </nav>
+    <main id="main" tabindex="-1">
+      <noscript><p>本模擬系統需要啟用 JavaScript 才能顯示案件資料。</p></noscript>
+
+      <div class="page-head">
+        <h1>政府數位服務無障礙改善追蹤平台</h1>
+        <p>每一個無障礙問題，都要有負責單位、改善期限與使用者複驗。你可以通報問題、查詢處理進度，也可以切換模擬身分，走一次機關改善與複驗的完整流程。</p>
+      </div>
+      <section>
+        <h2 id="h-kpi" class="visually-hidden">重點數字</h2>
+        <ul class="kpi-grid" id="home-kpis"></ul>
+      </section>
+      <div class="grid-2">
+        <section class="card">
+          <h2 id="h-start">從這裡開始</h2>
+          <ul class="list-plain">
+            <li><a class="btn" href="report.html">我要通報無障礙問題</a></li>
+            <li><a href="cases.html">瀏覽與搜尋所有案件</a></li>
+            <li><a href="dashboard.html">查看統計儀表板</a></li>
+            <li><a href="workbench.html">切換模擬身分，處理案件</a></li>
+          </ul>
+          <form class="inline-form" action="case.html" method="get" id="track-form">
+            <div class="field">
+              <label for="track-id">以案件編號查詢進度</label>
+              <span class="hint" id="track-hint">例如 A11Y-2026-0012</span>
+              <input id="track-id" name="id" type="text" aria-describedby="track-hint" autocomplete="off" spellcheck="false">
+            </div>
+            <button type="submit">查詢</button>
+          </form>
+        </section>
+        <section class="card">
+          <h2 id="h-flow">處理流程</h2>
+          <ol class="flow">
+            <li>通報</li><li>評估分級</li><li>機關改善</li><li>使用者複驗</li><li class="flow-end">結案</li>
+          </ol>
+          <p>複驗未通過時退回機關、繼續列管。阻斷級問題在修正前，機關須先提供電話、臨櫃或可讀取格式等替代管道。</p>
+          <div class="table-wrap" role="region" aria-labelledby="sev-caption" tabindex="0">
+          <table class="data-table">
+            <caption id="sev-caption">障礙等級與改善期限</caption>
+            <thead><tr><th scope="col">等級</th><th scope="col">定義</th><th scope="col">改善期限</th><th scope="col">替代管道</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><span class="chip sev-block">阻斷</span></th><td>無法自主完成任務</td><td>30 日內修正</td><td>3 個工作日內提供</td></tr>
+              <tr><th scope="row"><span class="chip sev-serious">嚴重</span></th><td>需他人協助或改走其他管道</td><td>60 日內修正</td><td>視需要提供</td></tr>
+              <tr><th scope="row"><span class="chip sev-normal">一般</span></th><td>可完成，但明顯耗時或容易出錯</td><td>90 日內或下次改版時修正</td><td>不需要</td></tr>
+            </tbody>
+          </table>
+        </div>
+        </section>
+      </div>
+      <section class="card">
+        <h2 id="h-compare">和現行無障礙申訴專區有什麼不同</h2>
+        <div class="table-wrap" role="region" aria-labelledby="compare-caption" tabindex="0">
+          <table class="data-table compare">
+            <caption id="compare-caption">現行申訴專區與本平台比較</caption>
+            <thead><tr><th scope="col">項目</th><th scope="col">現行無障礙申訴專區</th><th scope="col">本平台（提案）</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">改善期限</th><td>未明定；實例中只回覆「已去函要求改善」</td><td>依等級明定 30、60、90 日</td></tr>
+              <tr><th scope="row">處理進度</th><td>申訴人無從得知</td><td>每件案件公開處理時間軸</td></tr>
+              <tr><th scope="row">是否複驗</th><td>沒有複驗</td><td>使用者實測確認可用，才能結案</td></tr>
+              <tr><th scope="row">受理範圍</th><td>以政府網站為主</td><td>政府機關、公營事業，並分階段納入一定使用者規模的企業</td></tr>
+              <tr><th scope="row">友善版本</th><td>未規範</td><td>登錄為「功能落差」案件；友善版本不免除標準版的義務</td></tr>
+              <tr><th scope="row">驗證方式</th><td>圖形驗證碼（附語音播放）</td><td>不使用圖形驗證碼</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <div class="grid-2">
+        <section class="card">
+          <h2 id="h-recent">最新通報</h2>
+          <ul class="list-plain task-list" id="recent-cases"></ul>
+          <p><a href="cases.html">查看全部案件</a></p>
+        </section>
+        <section class="card">
+          <h2 id="h-improved">近期改善成果</h2>
+          <ul class="list-plain task-list" id="recent-closed"></ul>
+        </section>
+      </div>
+    </main>
+  </div>
+  <footer class="site-footer">
+    <p>本站為「看不見的資訊障礙：政府數位服務的可近用性評估與改善工具」提案的展示用模擬系統。所有案件、機關回應與統計皆為模擬資料，部分情境參考公開報導；資料只存在你的瀏覽器。</p>
+    <div class="footer-actions">
+      <a href="about.html#statement">無障礙聲明</a>
+      <button type="button" class="btn-secondary" id="reset-btn">重設模擬資料</button>
+    </div>
+    <dialog id="reset-dialog" aria-labelledby="reset-title" aria-describedby="reset-desc">
+      <h2 id="reset-title">重設模擬資料？</h2>
+      <p id="reset-desc">你新增的通報與所有處理紀錄都會清除，回到初始的模擬資料。此動作無法復原。</p>
+      <div class="btn-row">
+        <button type="button" class="btn-secondary" data-cancel>取消</button>
+        <button type="button" class="btn-danger" data-confirm>重設資料</button>
+      </div>
+    </dialog>
+  </footer>
+  <div id="live" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>
